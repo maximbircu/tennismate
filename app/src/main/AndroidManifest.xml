@@ -23,12 +23,25 @@
 
         </activity>
 
+        <service android:name=".service.FirebaseNotificationService">
+            <intent-filter>
+                <action android:name="com.google.firebase.MESSAGING_EVENT"/>
+            </intent-filter>
+        </service>
+
+        <service android:name=".service.FirebaseIdService">
+            <intent-filter>
+                <action android:name="com.google.firebase.INSTANCE_ID_EVENT"/>
+            </intent-filter>
+        </service>
+
         <activity android:name=".ui.activities.LoginActivity"/>
         <activity android:name=".ui.activities.SignUpActivity"/>
         <activity android:name=".ui.activities.PartnerFinderActivity"/>
         <activity android:name=".ui.activities.RandomPartnerFinderActivity"/>
         <activity android:name=".ui.activities.CourtListActivity"/>
         <activity android:name=".ui.activities.CourtInfoActivity"/>
+
     </application>
 
 </manifest>
