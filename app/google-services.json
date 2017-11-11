@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "86469723934",
+    "firebase_url": "https://tennis-mate-11cee.firebaseio.com",
+    "project_id": "tennis-mate-11cee",
+    "storage_bucket": "tennis-mate-11cee.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:86469723934:android:ad5d55a32fe7bb46",
+        "android_client_info": {
+          "package_name": "com.example.hackintosh.tennismate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "86469723934-vn1edte8spsrghfoteg45u17epvthpvf.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCtNd8vVYFGDXK5iImI5Dwcp79dUin1D0c"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

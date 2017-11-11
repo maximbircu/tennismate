@@ -1,12 +1,14 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
+apply plugin: 'com.google.gms.google-services'
+
 
 android {
     compileSdkVersion rootProject.ext.androidCompileSdkVersion
     buildToolsVersion rootProject.ext.androidBuildToolsVersion
 
     defaultConfig {
-        applicationId "com.marketspulse.nextgen"
+        applicationId "com.example.hackintosh.tennismate"
         minSdkVersion rootProject.ext.androidMinSdkVersion
         targetSdkVersion rootProject.ext.androidTargetSdkVersion
         versionName rootProject.ext.versionName
@@ -15,25 +17,10 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
 
-    signingConfigs {
-        marketsPulseSigning {
-            keyAlias 'Markets pulse general key'
-            keyPassword 'MarketsPulse_gen_aPk_!'
-            storeFile file('../MarketsPulseAndroidKeystore')
-            storePassword 'com.MarketsPulse.keystore!'
-        }
-    }
-
     buildTypes {
         debug {
             debuggable true
             testCoverageEnabled true
-        }
-        release {
-            signingConfig signingConfigs.marketsPulseSigning
-            minifyEnabled false
-            shrinkResources false
-            proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
 

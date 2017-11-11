@@ -12,7 +12,7 @@ import com.example.hackintosh.tennismate.ui.view.LoginView;
  * Created by maxim on 11/11/17.
  */
 
-public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> implements LoginView{
+public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> implements LoginView {
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
