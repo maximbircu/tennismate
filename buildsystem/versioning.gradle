@@ -1,0 +1,24 @@
+ext {
+    init()
+    versionCode = generateVersionCode();
+    versionName = generateVersionName();
+    archivesBaseName = generateArchiveBaseName();
+}
+
+private void init(){
+    if(System.getenv("version_name")) {
+        (versionMajor, versionMinor, versionPatch, buildNumber) = System.getenv("version_name").tokenize(".");
+    }
+}
+
+private Integer generateVersionCode() {
+    return Integer.valueOf(versionMajor) * 1000000 + Integer.valueOf(versionMinor) * 10000 + Integer.valueOf(versionPatch)  * 100 + Integer.valueOf(buildNumber);
+}
+
+private String generateVersionName() {
+    return "${versionMajor}.${versionMinor}.${versionPatch}";
+}
+
+private String generateArchiveBaseName(){
+    return versionName + "." + Integer.valueOf(buildNumber);
+}

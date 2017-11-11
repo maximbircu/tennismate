@@ -1,28 +1,83 @@
 apply plugin: 'com.android.application'
+apply plugin: 'me.tatarka.retrolambda'
 
 android {
-    compileSdkVersion 26
+    compileSdkVersion rootProject.ext.androidCompileSdkVersion
+    buildToolsVersion rootProject.ext.androidBuildToolsVersion
+
     defaultConfig {
-        applicationId "com.example.hackintosh.tennismate"
-        minSdkVersion 15
-        targetSdkVersion 26
-        versionCode 1
-        versionName "1.0"
+        applicationId "com.marketspulse.nextgen"
+        minSdkVersion rootProject.ext.androidMinSdkVersion
+        targetSdkVersion rootProject.ext.androidTargetSdkVersion
+        versionName rootProject.ext.versionName
+        versionCode rootProject.ext.versionCode
+        archivesBaseName = rootProject.ext.archivesBaseName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
+
+    signingConfigs {
+        marketsPulseSigning {
+            keyAlias 'Markets pulse general key'
+            keyPassword 'MarketsPulse_gen_aPk_!'
+            storeFile file('../MarketsPulseAndroidKeystore')
+            storePassword 'com.MarketsPulse.keystore!'
+        }
+    }
+
     buildTypes {
+        debug {
+            debuggable true
+            testCoverageEnabled true
+        }
         release {
+            signingConfig signingConfigs.marketsPulseSigning
             minifyEnabled false
+            shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
+    }
+
+    packagingOptions {
+        pickFirst 'build.number'
+        pickFirst 'version.number'
+        pickFirst 'compatibility_version.number'
+        exclude 'META-INF/INDEX.LIST'
+        exclude 'META-INF/io.netty.versions.properties'
+    }
+
+    compileOptions {
+        sourceCompatibility JavaVersion.VERSION_1_8
+        targetCompatibility JavaVersion.VERSION_1_8
     }
 }
 
 dependencies {
-    implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation 'com.android.support:appcompat-v7:26.1.0'
-    implementation 'com.android.support.constraint:constraint-layout:1.0.2'
-    testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+
+    def android = rootProject.ext.androidDependences
+    def libraries = rootProject.ext.librariesDependeces
+    def test = rootProject.ext.testingDependeces
+
+    compile android.appCompat
+    compile android.design
+    compile android.constraintLayout
+    compile android.recyclerView
+    compile android.cardView
+    compile android.observableScrollView
+    compile android.textDrawable
+    compile android.picasso
+    compile android.circleIndicator
+    compile android.butterKnife
+    annotationProcessor android.butterKnifeCompiler
+
+    compile libraries.dagger
+    annotationProcessor libraries.daggerCompiler
+
+    androidTestCompile(test.espressoCore, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    androidTestCompile(test.espressoIntents, {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+
+    testCompile test.junit
 }
