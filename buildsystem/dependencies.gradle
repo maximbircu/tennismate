@@ -33,6 +33,8 @@ ext {
             recyclerView        : "com.android.support:recyclerview-v7:${appCompatVersion}",
             observableScrollView: "com.github.ksoichiro:android-observablescrollview:${observableScrollViewVersion}",
             cardView            : "com.android.support:cardview-v7:${appCompatVersion}",
+            firebase            : "com.google.firebase:firebase-auth:11.6.0",
+            playservicesAuth    : "com.google.android.gms:play-services-auth:11.6.0",
             butterKnife         : "com.jakewharton:butterknife:${butterKnifeVersion}",
             butterKnifeCompiler : "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
             textDrawable        : "com.amulyakhare:com.amulyakhare.textdrawable:${textDrawableVersion}",

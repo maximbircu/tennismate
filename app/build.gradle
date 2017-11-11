@@ -1,6 +1,5 @@
 apply plugin: 'com.android.application'
 apply plugin: 'me.tatarka.retrolambda'
-apply plugin: 'com.google.gms.google-services'
 
 
 android {
@@ -54,6 +53,10 @@ dependencies {
     compile android.picasso
     compile android.circleIndicator
     compile android.butterKnife
+    compile android.firebase
+    compile android.playservicesAuth
+
+
     annotationProcessor android.butterKnifeCompiler
 
     compile libraries.dagger
@@ -67,4 +70,7 @@ dependencies {
     })
 
     testCompile test.junit
+
 }
+
+apply plugin: 'com.google.gms.google-services'

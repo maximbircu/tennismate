@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "86469723934-43omia1238l0k7d9h4qq9ipur7im9vgn.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hackintosh.tennismate",
+            "certificate_hash": "61eb14309038d65e58a2096a26b3317d82ab8b40"
+          }
+        },
+        {
           "client_id": "86469723934-vn1edte8spsrghfoteg45u17epvthpvf.apps.googleusercontent.com",
           "client_type": 3
         }
@@ -29,8 +37,13 @@
           "status": 1
         },
         "appinvite_service": {
-          "status": 1,
-          "other_platform_oauth_client": []
+          "status": 2,
+          "other_platform_oauth_client": [
+            {
+              "client_id": "86469723934-vn1edte8spsrghfoteg45u17epvthpvf.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
         },
         "ads_service": {
           "status": 2
