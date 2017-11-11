@@ -11,7 +11,7 @@ import com.example.hackintosh.tennismate.ui.navigation.Navigator;
 
 public class BasePresenter<V> {
     private V view;
-    protected final Navigator navigator;
+    public final Navigator navigator;
 
     protected BasePresenter(Navigator navigator) {
         this.navigator = navigator;

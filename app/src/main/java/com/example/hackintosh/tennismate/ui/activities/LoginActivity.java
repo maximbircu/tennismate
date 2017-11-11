@@ -2,13 +2,13 @@ package com.example.hackintosh.tennismate.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.util.Log;
-import android.view.View;
 import android.widget.Toast;
 
 import com.example.hackintosh.tennismate.R;
+import com.example.hackintosh.tennismate.dto.DataKeys;
+import com.example.hackintosh.tennismate.dto.User;
 import com.example.hackintosh.tennismate.ui.navigation.Navigator;
 import com.example.hackintosh.tennismate.ui.presenters.LoginPresenter;
 import com.example.hackintosh.tennismate.ui.view.LoginView;
@@ -18,10 +18,8 @@ import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
-import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
@@ -107,8 +105,17 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                 });
     }
 
-    private void updateUI(FirebaseUser user) {
-        Log.d(this.getClass().getName(), user.getDisplayName());
+    private void updateUI(FirebaseUser firebaseUser) {
+        User user = new User();
+        user.setEmail(firebaseUser.getEmail());
+        user.setImageUrl(firebaseUser.getPhotoUrl() != null ? firebaseUser.getPhotoUrl().toString() : null);
+        user.setFullName(firebaseUser.getDisplayName());
+
+        Intent intent = new Intent(this, SignUpActivity.class);
+        Bundle bundle = new Bundle();
+        bundle.putSerializable(DataKeys.USER, user);
+        intent.putExtras(bundle);
+        super.presenter.navigator.openSignUpActivity(intent);
     }
 
     public void setPresenter() {
