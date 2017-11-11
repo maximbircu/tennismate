@@ -3,19 +3,30 @@
     package="com.example.hackintosh.tennismate">
 
     <application
+        android:name=".App"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
-        android:label=""
+        android:label="Tennismate"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".MainActivity">
+
+        <activity
+            android:name=".ui.activities.SplashActivity"
+            android:theme="@style/SplashTheme">
+
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
+
+        <activity android:name=".ui.activities.LoginActivity"/>
+        <activity android:name=".ui.activities.SignUpActivity"/>
+        <activity android:name=".ui.activities.RadnomPartnerFinderActivity"/>
+        <activity android:name=".ui.activities.CourtListActivity"/>
+        <activity android:name=".ui.activities.CourtInfoActivity"/>
     </application>
 
 </manifest>
