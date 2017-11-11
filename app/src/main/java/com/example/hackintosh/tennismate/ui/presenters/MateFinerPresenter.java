@@ -13,6 +13,5 @@ public class MateFinerPresenter extends BasePresenter<MateFinderView> {
 
     public MateFinerPresenter(Navigator navigator) {
         super(navigator);
-        navigator.openLoginActivity();
     }
 }

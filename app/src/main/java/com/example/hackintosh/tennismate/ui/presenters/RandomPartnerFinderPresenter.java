@@ -14,6 +14,5 @@ public class RandomPartnerFinderPresenter extends BasePresenter<RandomPartnerFin
 
     public RandomPartnerFinderPresenter(Navigator navigator) {
         super(navigator);
-        navigator.openLoginActivity();
     }
 }
