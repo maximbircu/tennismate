@@ -13,7 +13,6 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FirebaseHelper {
     private static FirebaseDatabase database = FirebaseDatabase.getInstance();
-    private static final String FIREBASE_ONLINE_USERS = "users";
 
 
     private FirebaseHelper() {
@@ -51,6 +50,6 @@ public class FirebaseHelper {
 
     private static DatabaseReference getReference(String reference){
         DatabaseReference result = database.getReference();
-        return result.child(FIREBASE_ONLINE_USERS).child(reference);
+        return result.child(reference);
     }
 }
