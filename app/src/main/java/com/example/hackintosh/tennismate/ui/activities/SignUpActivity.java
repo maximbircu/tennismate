@@ -4,6 +4,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
@@ -24,6 +25,7 @@ import java.util.logging.Level;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 /**
  * Created by maxim on 11/11/17.
@@ -39,6 +41,9 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
 
     @BindView(R.id.full_name_editText)
     public EditText fullNameEditText;
+
+    @BindView(R.id.signup_button)
+    public Button button;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -61,7 +66,6 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
                 android.R.layout.simple_spinner_item, levels);
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         levelSpinner.setAdapter(dataAdapter);
-
     }
 
     private User populateUser() {
@@ -70,8 +74,13 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
         user.setEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         user.setAge(Short.parseShort(ageEditText.getText().toString()));
         user.setImageUrl(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString());
-        user.setLevel(LevelEnum.valueOf((String)levelSpinner.getSelectedItem()));
+        user.setLevel(LevelEnum.ADVANCED);
         return user;
+    }
+
+    @OnClick(R.id.signup_button)
+    public void registerUser() {
+        this.presenter.registerUser(populateUser());
     }
 
     @Override

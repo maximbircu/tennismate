@@ -10,6 +10,7 @@ import java.util.SortedMap;
  */
 
 public class User implements Serializable {
+    private String uuid;
     private String email;
     private Short age;
     private String fullName;
@@ -65,6 +66,14 @@ public class User implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }
 
