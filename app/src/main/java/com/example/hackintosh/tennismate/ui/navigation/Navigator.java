@@ -58,8 +58,7 @@ public class Navigator {
         activity.finish();
     }
 
-    public void openSignUpActivity() {
-        Intent intent = new Intent(activity, SignUpActivity.class);
+    public void openSignUpActivity(Intent intent) {
         activity.startActivity(intent);
         activity.finish();
     }
