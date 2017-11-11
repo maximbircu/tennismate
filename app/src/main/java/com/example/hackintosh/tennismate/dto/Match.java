@@ -13,6 +13,9 @@ public class Match {
     private int locationId;
     private int terrainNumber;
 
+    public Match() {
+    }
+
     public Match(String ownerId, int joinLimit, List<String> joins, int locationId, int terrainNumber) {
         this.ownerId = ownerId;
         this.joinLimit = joinLimit;
