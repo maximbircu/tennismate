@@ -2,7 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/TENNISMATE.iml" filepath="$PROJECT_DIR$/TENNISMATE.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/tennis-booking.iml" filepath="$PROJECT_DIR$/tennis-booking.iml" />
       <module fileurl="file://$PROJECT_DIR$/tennismate.iml" filepath="$PROJECT_DIR$/tennismate.iml" />
     </modules>
   </component>

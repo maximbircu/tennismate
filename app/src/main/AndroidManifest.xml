@@ -41,6 +41,7 @@
         <activity android:name=".ui.activities.RandomPartnerFinderActivity"/>
         <activity android:name=".ui.activities.CourtListActivity"/>
         <activity android:name=".ui.activities.CourtInfoActivity"/>
+
     </application>
 
 </manifest>
