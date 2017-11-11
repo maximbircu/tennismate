@@ -40,4 +40,8 @@ public class Match {
     public int getTerrainNumber() {
         return terrainNumber;
     }
+
+    public boolean hasOpenPlaces(){
+        return joinLimit > joins.size();
+    }
 }

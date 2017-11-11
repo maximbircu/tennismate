@@ -13,19 +13,32 @@ import java.util.UUID;
  */
 
 public class MatchService {
-    private final String baseNode = "/match";
+    private static final String baseNode = "/match";
 
     public void createMatch(int playerLimit, int locationId, int terrainNumber, Runnable onComplete, Consumer<String> onError) {
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
         Match match = new Match(uid, playerLimit, new LinkedList<>(), locationId, terrainNumber);
         String id = UUID.randomUUID().toString();
-        FirebaseHelper.setValue(String.format("%s/%s",baseNode,id),match,onComplete,onError);
+        FirebaseHelper.setValue(getNode(id),match,onComplete,onError);
 
         //todo send push notiofication
     }
 
     public void getMatch(String id, Consumer<Match> onComplete, Consumer<String> onError){
-        String node = String.format("%s/%s", baseNode, id);
+        String node = getNode(id);
         FirebaseHelper.getValue(node,Match.class,onComplete,onError);
+    }
+
+    public void joinMatch(String id, Runnable onComplete, Consumer<String> onError){
+        getMatch(id, (data) -> {
+            if (data.hasOpenPlaces()){
+                data.getJoins().add(FirebaseAuth.getInstance().getUid());
+            }
+            FirebaseHelper.setValue(getNode(id),data, onComplete, onError);
+        }, onError);
+    }
+
+    private static String getNode(String id) {
+        return String.format("%s/%s", baseNode, id);
     }
 }
