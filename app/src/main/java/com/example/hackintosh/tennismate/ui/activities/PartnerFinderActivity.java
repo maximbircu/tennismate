@@ -12,6 +12,7 @@ import android.widget.Toast;
 import com.example.hackintosh.tennismate.R;
 import com.example.hackintosh.tennismate.dto.LevelEnum;
 import com.example.hackintosh.tennismate.dto.User;
+import com.example.hackintosh.tennismate.service.UserService;
 import com.example.hackintosh.tennismate.ui.adapters.CardsAdapter;
 import com.example.hackintosh.tennismate.ui.navigation.Navigator;
 import com.example.hackintosh.tennismate.ui.presenters.MateFinerPresenter;
@@ -20,6 +21,7 @@ import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -45,13 +47,14 @@ public class PartnerFinderActivity extends BaseAuthenticatedActivity<MateFinderV
         super.onResume();
         super.setContentLayout(R.layout.activity_partner_finder);
         ButterKnife.bind(this);
-        initSwipeCards();
+
+        UserService userService = new UserService();
+
+        userService.getUsers(data -> runOnUiThread(() -> initSwipeCards(data)),str -> Log.d("WTF",str));
     }
 
-    private void initSwipeCards() {
-        cardsAdapter = new CardsAdapter(Arrays.asList(
-                new User("mail",Short.valueOf("123"), "Ivan Papusoi", LevelEnum.ADVANCED, "test")
-        ));
+    private void initSwipeCards(List<User> users) {
+        cardsAdapter = new CardsAdapter(users);
 
         flingContainer.setAdapter((Adapter) cardsAdapter);
         flingContainer.setFlingListener(new SwipeFlingAdapterView.onFlingListener() {
@@ -98,6 +101,8 @@ public class PartnerFinderActivity extends BaseAuthenticatedActivity<MateFinderV
             }
 
         });
+
+        cardsAdapter.notifyDataSetChanged();
     }
 
 
