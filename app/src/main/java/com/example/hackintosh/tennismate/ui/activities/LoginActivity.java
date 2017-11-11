@@ -4,6 +4,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.View;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 import com.example.hackintosh.tennismate.R;
@@ -42,6 +44,9 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     @BindView(R.id.sign_in)
     SignInButton signInButton;
 
+    @BindView(R.id.progressBar)
+    ProgressBar progressBar;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -65,6 +70,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
 
     @OnClick(R.id.sign_in)
     void signIn() {
+        progressBar.setVisibility(View.VISIBLE);
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
         startActivityForResult(signInIntent, RC_SIGN_IN);
     }
@@ -110,16 +116,13 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
         user.setEmail(firebaseUser.getEmail());
         user.setImageUrl(firebaseUser.getPhotoUrl() != null ? firebaseUser.getPhotoUrl().toString() : null);
         user.setFullName(firebaseUser.getDisplayName());
-
-        Intent intent = new Intent(this, SignUpActivity.class);
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(DataKeys.USER, user);
-        intent.putExtras(bundle);
-        super.presenter.navigator.openSignUpActivity(intent);
+        super.presenter.navigator.openSignUpActivity();
+        finish();
     }
 
     public void setPresenter() {
         super.setPresenter(new LoginPresenter(new Navigator(this)));
         presenter.bind(this);
     }
+
 }

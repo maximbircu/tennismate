@@ -15,7 +15,7 @@ public enum  LevelEnum {
         this.level = level;
     }
 
-    String getLevel() {
+    public String getLevel() {
         return level;
     }
 }
