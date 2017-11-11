@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "86469723934-mj428c8tvgcq4kuog5cigutc8joh29b7.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.hackintosh.tennismate",
+            "certificate_hash": "c0e386a39bb9d462365e8d0fcb37fe1eb40f5fa4"
+          }
+        },
+        {
           "client_id": "86469723934-43omia1238l0k7d9h4qq9ipur7im9vgn.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
