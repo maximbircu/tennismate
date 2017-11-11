@@ -29,12 +29,21 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
     private RecyclerView.Adapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_court_list);
-
         setPresenter();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        super.setContentLayout(R.layout.activity_court_list);
+        setupRecycler();
+    }
+
+    private void setupRecycler() {
         ButterKnife.bind(this);
 
         mRecyclerView.setHasFixedSize(true);
@@ -44,12 +53,6 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
 
         mAdapter = new RecyclerViewAdapter(getDummyList());
         mRecyclerView.setAdapter(mAdapter);
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
-        super.setContentLayout(R.layout.activity_court_list);
     }
 
     public void setPresenter() {
