@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:showIn="navigation_view">
+
+    <group android:checkableBehavior="single">
+        <item
+            android:id="@+id/court_list"
+            android:title="Courts" />
+        <item
+            android:id="@+id/partner_finder"
+            android:title="Partner finder" />
+        <item
+            android:id="@+id/random_partner_finder"
+            android:title="Random partner finder" />
+
+        <item
+            android:id="@+id/logout"
+            android:title="Logout" />
+    </group>
+</menu>
