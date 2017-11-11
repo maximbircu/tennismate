@@ -15,6 +15,7 @@ ext {
     okhttpVersion = '3.4.1'
     annimonVersion = '1.1.7'
     lightstreamerVersion = '2.0.2'
+    swipecardsVersion = '1.0.9'
 
     //Testing
     hamcrestVersion = '1.3'
@@ -39,7 +40,8 @@ ext {
             butterKnifeCompiler : "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
             textDrawable        : "com.amulyakhare:com.amulyakhare.textdrawable:${textDrawableVersion}",
             picasso             : "com.squareup.picasso:picasso:${picassoVersion}",
-            circleIndicator     : "me.relex:circleindicator:${circleIndicatorVersion}"
+            circleIndicator     : "me.relex:circleindicator:${circleIndicatorVersion}",
+            swipecards           : "com.lorentzos.swipecards:library:${swipecardsVersion}"
     ]
 
 

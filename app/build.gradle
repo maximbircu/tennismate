@@ -60,8 +60,7 @@ dependencies {
     compile android.butterKnife
     compile android.firebase
     compile android.playservicesAuth
-
-
+    compile android.swipecards
 
 
     annotationProcessor android.butterKnifeCompiler

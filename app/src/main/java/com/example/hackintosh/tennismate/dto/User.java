@@ -1,9 +1,6 @@
 package com.example.hackintosh.tennismate.dto;
 
-import android.os.Parcelable;
-
 import java.io.Serializable;
-import java.util.SortedMap;
 
 /**
  * Created by lschidu on 11/11/17.
