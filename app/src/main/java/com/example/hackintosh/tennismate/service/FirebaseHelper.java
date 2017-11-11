@@ -13,6 +13,8 @@ import com.google.firebase.database.ValueEventListener;
 
 public class FirebaseHelper {
     private static FirebaseDatabase database = FirebaseDatabase.getInstance();
+    private static final String FIREBASE_ONLINE_USERS = "users";
+
 
     private FirebaseHelper() {
     }
@@ -20,16 +22,11 @@ public class FirebaseHelper {
     public static void setValue(String ref, Object value, Runnable onSuccess, Consumer<String> onError) {
         DatabaseReference reference = getReference(ref);
 
-
-
-        reference.setValue(value, new DatabaseReference.CompletionListener() {
-            @Override
-            public void onComplete(DatabaseError databaseError, DatabaseReference databaseReference) {
-                if(databaseError != null){
-                    onError.accept(databaseError.getMessage());
-                } else {
-                    onSuccess.run();
-                }
+        reference.setValue(value, (databaseError, databaseReference) -> {
+            if(databaseError != null){
+                onError.accept(databaseError.getMessage());
+            } else {
+                onSuccess.run();
             }
         });
     }
@@ -54,13 +51,6 @@ public class FirebaseHelper {
 
     private static DatabaseReference getReference(String reference){
         DatabaseReference result = database.getReference();
-
-        String[] split = reference.split("/");
-
-        for (String node : split){
-            result = result.child(node);
-        }
-
-        return result;
+        return result.child(FIREBASE_ONLINE_USERS).child(reference);
     }
 }
