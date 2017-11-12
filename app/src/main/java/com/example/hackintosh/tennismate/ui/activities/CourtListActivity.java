@@ -1,10 +1,18 @@
 package com.example.hackintosh.tennismate.ui.activities;
 
+import android.app.Notification;
+import android.app.NotificationManager;
+import android.app.PendingIntent;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+<<<<<<< HEAD
 import android.util.Log;
+=======
+import android.view.View;
+>>>>>>> bd88f699b94803ddae3de1b1a225a1b403ead1ee
 
 import com.example.hackintosh.tennismate.R;
 import com.example.hackintosh.tennismate.dto.Court;
@@ -42,6 +50,7 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setPresenter();
+        this.toolbarTitle = "Courts List";
     }
 
     @Override
@@ -53,6 +62,8 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
         } catch (JSONException e) {
             e.printStackTrace();
         }
+        setupRecycler();
+        createNotification();
     }
 
     private void setupRecycler() throws JSONException {
@@ -79,5 +90,25 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
             mRecyclerView.setAdapter(mAdapter);
 
         }, (error) -> Log.d("dsd", error));
+    }
+
+    public void createNotification() {
+
+        Intent intent = new Intent(this, PlanGameActivity.class);
+        PendingIntent pIntent = PendingIntent.getActivity(this, (int) System.currentTimeMillis(), intent, 0);
+
+
+        Notification noti = new Notification.Builder(this)
+                .setContentTitle("New mail from " + "test@gmail.com")
+                .setContentText("Subject").setSmallIcon(R.drawable.common_google_signin_btn_icon_dark)
+                .setContentIntent(pIntent)
+                .addAction(R.drawable.common_google_signin_btn_icon_light, "Accept", pIntent)
+                .addAction(R.drawable.common_google_signin_btn_icon_dark_normal_background, "Decline", pIntent).build();
+        NotificationManager notificationManager = (NotificationManager) getSystemService(NOTIFICATION_SERVICE);
+        // hide the notification after its selected
+        noti.flags |= Notification.FLAG_AUTO_CANCEL;
+
+        notificationManager.notify(0, noti);
+
     }
 }

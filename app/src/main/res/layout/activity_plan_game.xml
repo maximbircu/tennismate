@@ -6,19 +6,6 @@
     android:layout_height="match_parent"
     android:background="@drawable/background">
 
-    <CheckBox
-        android:id="@+id/checkBox"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginStart="8dp"
-        android:text="CheckBox"
-        android:textColor="#ffffff"
-        app:layout_constraintBottom_toTopOf="@+id/constraintLayout"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
-
     <android.support.constraint.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="0dp"
@@ -37,7 +24,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="8dp"
-            app:layout_constraintStart_toStartOf="parent">
+            app:layout_constraintStart_toStartOf="parent"
+            android:id="@+id/single_mode">
 
             <TextView
                 android:id="@+id/textView3"
@@ -55,18 +43,19 @@
                 app:layout_constraintStart_toStartOf="@+id/single_mode"
                 app:layout_constraintTop_toBottomOf="@+id/single_mode" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/single_mode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/single_mode" />
+                android:src="@drawable/single_mode" />
         </android.support.constraint.ConstraintLayout>
 
         <android.support.constraint.ConstraintLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginEnd="8dp"
-            app:layout_constraintEnd_toEndOf="parent">
+            app:layout_constraintEnd_toEndOf="parent"
+            android:id="@+id/double_mode">
 
             <TextView
                 android:id="@+id/textView4"
@@ -84,11 +73,11 @@
                 app:layout_constraintStart_toStartOf="@+id/double_mode"
                 app:layout_constraintTop_toBottomOf="@+id/double_mode" />
 
-            <ImageButton
+            <ImageView
                 android:id="@+id/double_mode"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:srcCompat="@drawable/double_mode" />
+                android:src="@drawable/double_mode" />
         </android.support.constraint.ConstraintLayout>
 
     </android.support.constraint.ConstraintLayout>

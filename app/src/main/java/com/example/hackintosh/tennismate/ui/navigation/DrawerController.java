@@ -37,6 +37,8 @@ public class DrawerController<A extends BaseActivity> {
     private ViewGroup navigationDrawerContainer;
     private Dictionary<Integer, Consumer<MenuItem>> menuItemSelectedConsumers;
 
+    private String toolbarTitle;
+
     @BindView(R.id.drawer_layout)
     DrawerLayout drawer;
 
@@ -53,8 +55,9 @@ public class DrawerController<A extends BaseActivity> {
     NavigationView navigationView;
 
 
-    public DrawerController(A activity, int navigationLayoutId, int navigationDrawerContainerId) {
+    public DrawerController(A activity, int navigationLayoutId, int navigationDrawerContainerId, String toolbarTitle) {
         this.activity = activity;
+        this.toolbarTitle = toolbarTitle;
         menuItemSelectedConsumers = new Hashtable<>();
         navigationDrawerContainer = (ViewGroup) activity.findViewById(navigationDrawerContainerId);
         inflateContents(activity, navigationLayoutId);
@@ -69,6 +72,7 @@ public class DrawerController<A extends BaseActivity> {
     }
 
     private void InitNavigationView() {
+        toolbar.setTitle(toolbarTitle);
         activity.setSupportActionBar(toolbar);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(activity, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);

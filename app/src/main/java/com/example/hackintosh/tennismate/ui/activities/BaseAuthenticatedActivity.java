@@ -18,6 +18,8 @@ public abstract class BaseAuthenticatedActivity<V extends BaseView, P extends Ba
 
     private static String TAG = BaseAuthenticatedActivity.class.getName();
 
+    protected String toolbarTitle; 
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,8 @@ public abstract class BaseAuthenticatedActivity<V extends BaseView, P extends Ba
     protected void initNavigationController() {
         DrawerController<BaseAuthenticatedActivity> drawerController = new DrawerController<>(this,
                 R.layout.navigation,
-                R.id.navigation_drawer_container);
+                R.id.navigation_drawer_container,
+                toolbarTitle);
 
         drawerController.setMenuItems(R.menu.menu_items);
         drawerController.addConsumerForMenuItem(R.id.court_list, presenter::openCourtList);
