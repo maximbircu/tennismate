@@ -40,6 +40,7 @@ ext {
             butterKnifeCompiler : "com.jakewharton:butterknife-compiler:${butterKnifeVersion}",
             textDrawable        : "com.amulyakhare:com.amulyakhare.textdrawable:${textDrawableVersion}",
             picasso             : "com.squareup.picasso:picasso:${picassoVersion}",
+            firebaseClient      : "com.firebase:firebase-client-android:2.3.1",
             circleIndicator     : "me.relex:circleindicator:${circleIndicatorVersion}",
             swipecards           : "com.lorentzos.swipecards:library:${swipecardsVersion}"
     ]

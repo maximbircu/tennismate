@@ -2,6 +2,7 @@ package com.example.hackintosh.tennismate.ui.viewholders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -27,6 +28,9 @@ public class CardViewHolder {
 
     @BindView(R.id.image)
     public ImageView image;
+
+    @BindView(R.id.button2)
+    public Button inviteButton;
 
     public CardViewHolder(View itemView) {
         ButterKnife.bind(this, itemView);
