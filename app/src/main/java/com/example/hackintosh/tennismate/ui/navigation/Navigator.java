@@ -8,7 +8,7 @@ import com.example.hackintosh.tennismate.ui.activities.CourtInfoActivity;
 import com.example.hackintosh.tennismate.ui.activities.CourtListActivity;
 import com.example.hackintosh.tennismate.ui.activities.LoginActivity;
 import com.example.hackintosh.tennismate.ui.activities.PartnerFinderActivity;
-import com.example.hackintosh.tennismate.ui.activities.RandomPartnerFinderActivity;
+import com.example.hackintosh.tennismate.ui.activities.PlanGameActivity;
 import com.example.hackintosh.tennismate.ui.activities.SignUpActivity;
 
 import javax.inject.Inject;
@@ -53,7 +53,7 @@ public class Navigator {
     }
 
     public void openRandomPartnerFinderActivity() {
-        Intent intent = new Intent(activity, RandomPartnerFinderActivity.class);
+        Intent intent = new Intent(activity, PlanGameActivity.class);
         activity.startActivity(intent);
         activity.finish();
     }
