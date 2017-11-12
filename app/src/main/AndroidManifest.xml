@@ -10,7 +10,7 @@
         android:label="Tennismate"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/TennisTheme">
+        android:theme="@style/AppTheme">
 
         <activity
             android:name=".ui.activities.SplashActivity"
@@ -38,7 +38,7 @@
         <activity android:name=".ui.activities.LoginActivity"/>
         <activity android:name=".ui.activities.SignUpActivity"/>
         <activity android:name=".ui.activities.PartnerFinderActivity"/>
-        <activity android:name=".ui.activities.RandomPartnerFinderActivity"/>
+        <activity android:name=".ui.activities.PlanGameActivity"/>
         <activity android:name=".ui.activities.CourtListActivity"/>
         <activity android:name=".ui.activities.CourtInfoActivity"/>
 
