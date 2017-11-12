@@ -8,4 +8,5 @@
     <color name="modeBackgroundColor">#66ffffff</color>
 
     <color name="activityBackground">#92d5d6</color>
+    <color name="appBar">#3a5554</color>
 </resources>

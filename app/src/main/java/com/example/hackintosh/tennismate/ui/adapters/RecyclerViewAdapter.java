@@ -89,10 +89,12 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         for(int i = 0; i < courts.size(); i++) {
             final int terrainNumber = i;
             TextView mTextView = new TextView(context);
-            String fieldName = "Field No. " + courts.get(terrainNumber);
+            String fieldName = "" + courts.get(terrainNumber);
             mTextView.setText(fieldName);
             mTextView.setTextColor(Color.DKGRAY);
-            mTextView.setBackgroundColor(Color.LTGRAY);
+            mTextView.setBackgroundColor(Color.TRANSPARENT);
+            mTextView.setTextSize(20);
+            mTextView.setPadding(35,0,0,0);
             mTextView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, CourtInfoActivity.class);
                 intent.putExtra("court", holder.mTextView.getText());
