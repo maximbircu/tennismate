@@ -3,12 +3,14 @@ package com.example.hackintosh.tennismate.ui.adapters;
 import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
+import android.support.design.widget.Snackbar;
 import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
 import android.support.v7.widget.CardView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Toast;
 
 import com.example.hackintosh.tennismate.R;
 import com.example.hackintosh.tennismate.dto.User;
@@ -80,6 +82,10 @@ public class CardsAdapter extends BaseAdapter {
             Map notification = new HashMap<>();
             notification.put("username", user);
             notification.put("message", "PLEA SUKA");
+
+            Snackbar.make(view1,"Invitation sent!",Snackbar.LENGTH_SHORT).show();
+            cardViewHolder.inviteButton.setText("Sent");
+            cardViewHolder.inviteButton.setEnabled(false);
 
             notifications.push().setValue(notification);
         });
