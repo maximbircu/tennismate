@@ -38,7 +38,7 @@ public class CourtInfoActivity extends BaseAuthenticatedActivity<CourtInfoView, 
 
     public void setupActivity() {
         Intent intent = getIntent();
-        this.drawerController.toolbar.setTitle(intent.getStringExtra("field") + intent.getStringExtra("court"));
+        this.drawerController.toolbar.setTitle(intent.getStringExtra("field") + " - "+intent.getStringExtra("court"));
 
     }
 
