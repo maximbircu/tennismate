@@ -62,7 +62,7 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
             FirebaseUser user = firebaseAuth.getCurrentUser();
             if (user != null) {
                 Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
-                updateUI(user);
+                updateUI();
             } else {
                 Log.d(TAG, "onAuthStateChanged:signed_out");
             }
@@ -114,18 +114,14 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                     if (task.isSuccessful()) {
                         Log.d(TAG, "signInWithCredential:success");
                         FirebaseUser user = mAuth.getCurrentUser();
-                        updateUI(user);
+                        updateUI();
                     }
 
                 });
     }
 
-    private void updateUI(FirebaseUser firebaseUser) {
-        User user = new User();
-        user.setEmail(firebaseUser.getEmail());
-        user.setImageUrl(firebaseUser.getPhotoUrl() != null ? firebaseUser.getPhotoUrl().toString() : null);
-        user.setFullName(firebaseUser.getDisplayName());
-        super.presenter.navigator.openSignUpActivity();
+    private void updateUI() {
+        this.presenter.navigator.openSignUpActivity();
         finish();
     }
 
