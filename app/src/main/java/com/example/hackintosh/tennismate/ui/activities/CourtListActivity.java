@@ -63,7 +63,6 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mRecyclerView.setAdapter(mAdapter);
 
         populateCourtList();
     }
@@ -77,6 +76,7 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
         CourtsServices courtsServices = new CourtsServices();
         courtsServices.getCourts((data) -> {
             mAdapter = new RecyclerViewAdapter(data);
+            mRecyclerView.setAdapter(mAdapter);
 
         }, (error) -> Log.d("dsd", error));
     }

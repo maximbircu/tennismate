@@ -9,7 +9,7 @@ import com.example.hackintosh.tennismate.ui.presenters.RandomPartnerFinderPresen
 import com.example.hackintosh.tennismate.ui.view.RandomPartnerFinderView;
 
 
-public class RandomPartnerFinderActivity extends BaseAuthenticatedActivity<RandomPartnerFinderView, RandomPartnerFinderPresenter> implements RandomPartnerFinderView {
+public class PlanGameActivity extends BaseAuthenticatedActivity<RandomPartnerFinderView, RandomPartnerFinderPresenter> implements RandomPartnerFinderView {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -20,7 +20,7 @@ public class RandomPartnerFinderActivity extends BaseAuthenticatedActivity<Rando
     @Override
     protected void onResume() {
         super.onResume();
-        super.setContentLayout(R.layout.activity_random_partner_finder);
+        super.setContentLayout(R.layout.activity_plan_game);
     }
 
     public void setPresenter() {

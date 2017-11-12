@@ -8,12 +8,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.hackintosh.tennismate.R;
 import com.example.hackintosh.tennismate.dto.Court;
 import com.example.hackintosh.tennismate.ui.activities.CourtInfoActivity;
+import com.squareup.picasso.Picasso;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -39,6 +41,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         public View view;
         @BindView(R.id.myText)
         public TextView mTextView;
+        @BindView(R.id.elementImage)
+        ImageView imageView;
 
         public ViewHolder(View v) {
             super(v);
@@ -71,6 +75,8 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
         holder.mTextView.setText(court.getTitle());
         courts = court.getTerrains();
+
+        Picasso.with(context).load(court.getImageUrl()).into(holder.imageView);
 
 
         LinearLayout dataLayout = (LinearLayout) holder.view.findViewById(R.id.dataContainer);

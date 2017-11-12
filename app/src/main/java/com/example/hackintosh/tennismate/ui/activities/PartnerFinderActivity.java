@@ -62,6 +62,8 @@ public class PartnerFinderActivity extends BaseAuthenticatedActivity<MateFinderV
             public void removeFirstObjectInAdapter() {
                 // this is the simplest way to delete an object from the Adapter (/AdapterView)
                 Log.d("LIST", "removed object!");
+                users.add(users.get(0));
+                users.remove(0);
                 cardsAdapter.notifyDataSetChanged();
             }
 
