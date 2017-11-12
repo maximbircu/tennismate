@@ -6,11 +6,9 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Adapter;
-import android.widget.ArrayAdapter;
 import android.widget.Toast;
 
 import com.example.hackintosh.tennismate.R;
-import com.example.hackintosh.tennismate.dto.LevelEnum;
 import com.example.hackintosh.tennismate.dto.User;
 import com.example.hackintosh.tennismate.service.UserService;
 import com.example.hackintosh.tennismate.ui.adapters.CardsAdapter;
@@ -19,8 +17,6 @@ import com.example.hackintosh.tennismate.ui.presenters.MateFinerPresenter;
 import com.example.hackintosh.tennismate.ui.view.MateFinderView;
 import com.lorentzos.flingswipe.SwipeFlingAdapterView;
 
-import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import butterknife.BindView;
@@ -40,6 +36,7 @@ public class PartnerFinderActivity extends BaseAuthenticatedActivity<MateFinderV
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setPresenter();
+        this.toolbarTitle = "Find a tennis mate";
     }
 
     @Override

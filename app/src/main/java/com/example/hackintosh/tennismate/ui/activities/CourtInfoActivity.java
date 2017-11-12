@@ -15,6 +15,7 @@ public class CourtInfoActivity extends BaseAuthenticatedActivity<CourtInfoView, 
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setPresenter();
+        this.toolbarTitle = "Court info";
     }
 
     @Override

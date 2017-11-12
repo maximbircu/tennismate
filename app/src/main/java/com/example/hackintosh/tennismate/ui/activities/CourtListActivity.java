@@ -34,6 +34,7 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setPresenter();
+        this.toolbarTitle = "Courts List";
     }
 
     @Override
