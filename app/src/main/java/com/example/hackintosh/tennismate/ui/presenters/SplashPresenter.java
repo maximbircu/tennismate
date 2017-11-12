@@ -14,6 +14,7 @@ public class SplashPresenter extends BasePresenter<SplashView> {
 
     public SplashPresenter(Navigator navigator) {
         super(navigator);
+
         try {
             Thread.sleep(1000);
         } catch (InterruptedException e) {

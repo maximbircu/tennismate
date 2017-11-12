@@ -8,13 +8,20 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
+import android.util.Log;
 
 import com.example.hackintosh.tennismate.R;
+import com.example.hackintosh.tennismate.dto.Court;
+import com.example.hackintosh.tennismate.portability.Consumer;
+import com.example.hackintosh.tennismate.service.CourtsServices;
 import com.example.hackintosh.tennismate.ui.adapters.RecyclerViewAdapter;
 import com.example.hackintosh.tennismate.ui.navigation.Navigator;
 import com.example.hackintosh.tennismate.ui.presenters.CourtListPresenter;
 import com.example.hackintosh.tennismate.ui.view.CourtListView;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,12 +53,15 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
     protected void onResume() {
         super.onResume();
         super.setContentLayout(R.layout.activity_court_list);
-        setupRecycler();
-
+        try {
+            setupRecycler();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
         createNotification();
     }
 
-    private void setupRecycler() {
+    private void setupRecycler() throws JSONException {
         ButterKnife.bind(this);
 
         mRecyclerView.setHasFixedSize(true);
@@ -59,8 +69,8 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new RecyclerViewAdapter(getDummyList());
-        mRecyclerView.setAdapter(mAdapter);
+
+        populateCourtList();
     }
 
     public void setPresenter() {
@@ -68,13 +78,13 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
         presenter.bind(this);
     }
 
-    public List<String> getDummyList() {
-        List<String> dummyList = new ArrayList<>();
-        for(int i = 0; i < 100; i++) {
-            dummyList.add("Court Number " + i);
-        }
+    public void populateCourtList() {
+        CourtsServices courtsServices = new CourtsServices();
+        courtsServices.getCourts((data) -> {
+            mAdapter = new RecyclerViewAdapter(data);
+            mRecyclerView.setAdapter(mAdapter);
 
-        return dummyList;
+        }, (error) -> Log.d("dsd", error));
     }
 
     public void createNotification() {
