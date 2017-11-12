@@ -6,4 +6,6 @@
 
     <color name="loginLogoBackgroundColor">#55ffffff</color>
     <color name="modeBackgroundColor">#66ffffff</color>
+
+    <color name="activityBackground">#92d5d6</color>
 </resources>
