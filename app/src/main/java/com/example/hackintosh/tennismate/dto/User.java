@@ -17,12 +17,13 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String email, short age, String fullName, LevelEnum level, String imageUrl) {
+    public User(String email, short age, String fullName, LevelEnum level, String imageUrl, String uuid) {
         this.email = email;
         this.age = age;
         this.fullName = fullName;
         this.level = level;
         this.imageUrl = imageUrl;
+        this.uuid = uuid;
     }
 
     public String getEmail() {

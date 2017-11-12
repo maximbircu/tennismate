@@ -16,6 +16,7 @@ import com.example.hackintosh.tennismate.ui.navigation.Navigator;
 import com.example.hackintosh.tennismate.ui.presenters.SignUpPresenter;
 import com.example.hackintosh.tennismate.ui.view.SingnUpView;
 import com.example.hackintosh.tennismate.utils.CircleTransform;
+import com.firebase.client.Firebase;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
@@ -89,7 +90,7 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
 
     private void loadCircleImage(FirebaseUser currentUser) {
         Picasso.with(this).load(getUserPictureUrl(currentUser))
-                .transform(new CircleTransform())
+                .transform(new CircleTransform(true))
                 .into(profileImageView);
     }
 
@@ -113,6 +114,7 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
         user.setAge((Integer) ageSpinner.getSelectedItem());
         user.setImageUrl(getUserPictureUrl(FirebaseAuth.getInstance().getCurrentUser()));
         user.setLevel(LevelEnum.ADVANCED);
+        user.setUuid(FirebaseAuth.getInstance().getCurrentUser().getUid());
         return user;
     }
 

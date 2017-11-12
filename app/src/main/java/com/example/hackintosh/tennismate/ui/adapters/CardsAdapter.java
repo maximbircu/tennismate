@@ -15,10 +15,15 @@ import com.example.hackintosh.tennismate.dto.User;
 import com.example.hackintosh.tennismate.ui.viewholders.CardViewHolder;
 import com.example.hackintosh.tennismate.utils.CircleTransform;
 import com.example.hackintosh.tennismate.utils.DrawableHelper;
+import com.firebase.client.Firebase;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
+
+import butterknife.OnClick;
 
 /**
  * Created by maxim on 11/12/17.
@@ -61,12 +66,25 @@ public class CardsAdapter extends BaseAdapter {
         cardViewHolder.level.setText(user.getLevel()+"");
 
 
+
         Picasso.with(viewGroup.getContext())
                 .load(user.getImageUrl())
-                .transform(new CircleTransform())
+                .transform(new CircleTransform(false))
                 .into(cardViewHolder.image);
 
+        cardViewHolder.inviteButton.setOnClickListener(view1 -> {
+            Firebase.setAndroidContext(view1.getContext());
+            Firebase ref = new Firebase("https://tennis-mate-11cee.firebaseio.com/");
+            final Firebase notifications = ref.child("user").child(user.getUuid());
+
+            Map notification = new HashMap<>();
+            notification.put("username", user);
+            notification.put("message", "PLEA SUKA");
+
+            notifications.push().setValue(notification);
+        });
 
         return view;
     }
+
 }

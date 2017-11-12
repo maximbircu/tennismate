@@ -12,6 +12,16 @@ import com.squareup.picasso.Transformation;
  */
 
 public class CircleTransform implements Transformation {
+<<<<<<< HEAD
+=======
+
+    private boolean hasBorder;
+
+    public CircleTransform(boolean hasBorder) {
+        this.hasBorder = hasBorder;
+    }
+
+>>>>>>> 9bdc677132c3a17a004c7b7bf96ebe22de6382fb
     @Override
     public Bitmap transform(Bitmap source) {
         int size = Math.min(source.getWidth(), source.getHeight());
@@ -31,11 +41,24 @@ public class CircleTransform implements Transformation {
         BitmapShader shader = new BitmapShader(squaredBitmap, BitmapShader.TileMode.CLAMP, BitmapShader.TileMode.CLAMP);
         paint.setShader(shader);
         paint.setAntiAlias(true);
-
+        squaredBitmap.recycle();
         float r = size/2f;
         canvas.drawCircle(r, r, r, paint);
 
+<<<<<<< HEAD
         squaredBitmap.recycle();
+=======
+        if(hasBorder) {
+            // Initializing a new Paint instance to draw circular border
+            Paint borderPaint = new Paint();
+            borderPaint.setStyle(Paint.Style.STROKE);
+            borderPaint.setStrokeWidth(borderWidthHalf*2);
+            borderPaint.setColor(Color.WHITE);
+            borderPaint.setAntiAlias(true);
+            canvas.drawCircle(canvas.getWidth()/2, canvas.getWidth()/2, newBitmapSquareWidth/2 - 15, borderPaint);
+        }
+
+>>>>>>> 9bdc677132c3a17a004c7b7bf96ebe22de6382fb
         return bitmap;
     }
 

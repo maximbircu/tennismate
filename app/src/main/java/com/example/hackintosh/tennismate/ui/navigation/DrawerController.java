@@ -92,7 +92,7 @@ public class DrawerController<A extends BaseActivity> {
 
         Picasso.with(activity)
                 .load(currentUser.getPhotoUrl())
-                .transform(new CircleTransform())
+                .transform(new CircleTransform(false))
                 .into(userIcon);
 
         fullName.setText(currentUser.getDisplayName());
