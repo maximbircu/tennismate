@@ -63,7 +63,7 @@ public class CardsAdapter extends BaseAdapter {
 
         Picasso.with(viewGroup.getContext())
                 .load(user.getImageUrl())
-                .transform(new CircleTransform())
+                .transform(new CircleTransform(false))
                 .into(cardViewHolder.image);
 
 

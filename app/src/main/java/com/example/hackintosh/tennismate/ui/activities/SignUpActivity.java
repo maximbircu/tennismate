@@ -89,7 +89,7 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
 
     private void loadCircleImage(FirebaseUser currentUser) {
         Picasso.with(this).load(getUserPictureUrl(currentUser))
-                .transform(new CircleTransform())
+                .transform(new CircleTransform(true))
                 .into(profileImageView);
     }
 
