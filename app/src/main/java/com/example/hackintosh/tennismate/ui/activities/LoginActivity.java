@@ -62,10 +62,10 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
             FirebaseUser user = firebaseAuth.getCurrentUser();
             if (user != null) {
                 Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+                updateUI(user);
             } else {
                 Log.d(TAG, "onAuthStateChanged:signed_out");
             }
-            updateUI(user);
         };
 
         mAuth.addAuthStateListener(mAuthListener);
@@ -115,11 +115,6 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
                         Log.d(TAG, "signInWithCredential:success");
                         FirebaseUser user = mAuth.getCurrentUser();
                         updateUI(user);
-                    } else {
-                        Log.w(TAG, "signInWithCredential:failure", task.getException());
-                        Toast.makeText(LoginActivity.this, "Authentication failed.",
-                                Toast.LENGTH_SHORT).show();
-                        updateUI(null);
                     }
 
                 });
