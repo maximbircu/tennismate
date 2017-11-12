@@ -38,8 +38,8 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
     @BindView(R.id.level_spinner)
     public Spinner levelSpinner;
 
-    @BindView(R.id.age_editText)
-    public EditText ageEditText;
+    @BindView(R.id.age_spinner)
+    public Spinner ageSpinner;
 
     @BindView(R.id.full_name_editText)
     public EditText fullNameEditText;
@@ -77,6 +77,13 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         levelSpinner.setAdapter(dataAdapter);
 
+        List<Integer> ageList = new ArrayList<>();
+        for(int i = 7; i < 60; i++) {
+            ageList.add(i);
+        }
+        ArrayAdapter<Integer> ageAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, ageList);
+
+        ageSpinner.setAdapter(ageAdapter);
         loadCircleImage(currentUser);
     }
 
@@ -103,7 +110,7 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
         User user = new User();
         user.setFullName(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         user.setEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        user.setAge(Short.parseShort(ageEditText.getText().toString()));
+        user.setAge((Integer) ageSpinner.getSelectedItem());
         user.setImageUrl(getUserPictureUrl(FirebaseAuth.getInstance().getCurrentUser()));
         user.setLevel(LevelEnum.ADVANCED);
         return user;
