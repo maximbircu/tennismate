@@ -20,6 +20,7 @@ import com.example.hackintosh.tennismate.dto.User;
 import com.example.hackintosh.tennismate.ui.navigation.Navigator;
 import com.example.hackintosh.tennismate.ui.presenters.SignUpPresenter;
 import com.example.hackintosh.tennismate.ui.view.SingnUpView;
+import com.example.hackintosh.tennismate.utils.CircleTransform;
 import com.example.hackintosh.tennismate.utils.DrawableHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -87,19 +88,9 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
     }
 
     private void loadCircleImage(FirebaseUser currentUser) {
-        Picasso.with(this).load(getUserPictureUrl(currentUser)).into(target = new Target() {
-            @Override
-            public void onBitmapLoaded(Bitmap bitmap, Picasso.LoadedFrom from) {
-                RoundedBitmapDrawable image = DrawableHelper.createRoundedBitmapDrawableWithBorder(bitmap, getResources());
-                profileImageView.setImageDrawable(image);
-            }
-
-            @Override
-            public void onBitmapFailed(Drawable errorDrawable) {}
-
-            @Override
-            public void onPrepareLoad(Drawable placeHolderDrawable) {}
-        });
+        Picasso.with(this).load(getUserPictureUrl(currentUser))
+                .transform(new CircleTransform())
+                .into(profileImageView);
     }
 
     private String getUserPictureUrl(FirebaseUser firebaseUser) {
@@ -111,7 +102,7 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
         user.setFullName(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         user.setEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
         user.setAge(Short.parseShort(ageEditText.getText().toString()));
-        user.setImageUrl(FirebaseAuth.getInstance().getCurrentUser().getPhotoUrl().toString());
+        user.setImageUrl(getUserPictureUrl(FirebaseAuth.getInstance().getCurrentUser()));
         user.setLevel(LevelEnum.ADVANCED);
         return user;
     }

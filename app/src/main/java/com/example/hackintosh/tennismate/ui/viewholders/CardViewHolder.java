@@ -2,6 +2,7 @@ package com.example.hackintosh.tennismate.ui.viewholders;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.hackintosh.tennismate.R;
@@ -20,6 +21,12 @@ public class CardViewHolder {
 
     @BindView(R.id.user_age)
     public TextView age;
+
+    @BindView(R.id.level)
+    public TextView level;
+
+    @BindView(R.id.image)
+    public ImageView image;
 
     public CardViewHolder(View itemView) {
         ButterKnife.bind(this, itemView);

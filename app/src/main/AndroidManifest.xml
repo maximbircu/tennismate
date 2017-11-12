@@ -10,7 +10,7 @@
         android:label="Tennismate"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme.NoActionBar">
+        android:theme="@style/TennisTheme">
 
         <activity
             android:name=".ui.activities.SplashActivity"
