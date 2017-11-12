@@ -14,6 +14,6 @@ public class SplashPresenter extends BasePresenter<SplashView> {
 
     public SplashPresenter(Navigator navigator) {
         super(navigator);
-        navigator.openCourtInfoActivity();
+        navigator.openPartnerFinderActivity();
     }
 }

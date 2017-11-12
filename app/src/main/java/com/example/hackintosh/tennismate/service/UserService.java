@@ -5,6 +5,8 @@ import com.example.hackintosh.tennismate.portability.Consumer;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.List;
+
 /**
  * Created by nicu on 11/11/17.
  */
@@ -19,6 +21,11 @@ public class UserService {
 
     public void getUserDetails(Consumer<User> consumer, Consumer<String> onError){
         FirebaseHelper.getValue(getNodeForCurrentUser(),User.class,consumer, onError);
+    }
+
+
+    public void getUsers(Consumer<List<User>> consumer, Consumer<String> onError){
+        FirebaseHelper.getAllValues(userNode,User.class,consumer, onError);
     }
 
     public FirebaseUser getCurrentUser() {

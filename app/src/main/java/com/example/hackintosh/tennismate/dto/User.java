@@ -1,17 +1,15 @@
 package com.example.hackintosh.tennismate.dto;
 
-import android.os.Parcelable;
-
 import java.io.Serializable;
-import java.util.SortedMap;
 
 /**
  * Created by lschidu on 11/11/17.
  */
 
 public class User implements Serializable {
+    private String uuid;
     private String email;
-    private Short age;
+    private int age;
     private String fullName;
     private LevelEnum level;
     private String imageUrl;
@@ -19,7 +17,7 @@ public class User implements Serializable {
     public User() {
     }
 
-    public User(String email, Short age, String fullName, LevelEnum level, String imageUrl) {
+    public User(String email, short age, String fullName, LevelEnum level, String imageUrl) {
         this.email = email;
         this.age = age;
         this.fullName = fullName;
@@ -39,7 +37,7 @@ public class User implements Serializable {
         return age;
     }
 
-    public void setAge(Short age) {
+    public void setAge(int age) {
         this.age = age;
     }
 
@@ -65,6 +63,14 @@ public class User implements Serializable {
 
     public void setImageUrl(String imageUrl) {
         this.imageUrl = imageUrl;
+    }
+
+    public String getUuid() {
+        return uuid;
+    }
+
+    public void setUuid(String uuid) {
+        this.uuid = uuid;
     }
 }
 
