@@ -11,6 +11,10 @@ import com.example.hackintosh.tennismate.ui.navigation.Navigator;
 import com.example.hackintosh.tennismate.ui.presenters.CourtListPresenter;
 import com.example.hackintosh.tennismate.ui.view.CourtListView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -40,10 +44,14 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
     protected void onResume() {
         super.onResume();
         super.setContentLayout(R.layout.activity_court_list);
-        setupRecycler();
+        try {
+            setupRecycler();
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
     }
 
-    private void setupRecycler() {
+    private void setupRecycler() throws JSONException {
         ButterKnife.bind(this);
 
         mRecyclerView.setHasFixedSize(true);
@@ -60,12 +68,20 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
         presenter.bind(this);
     }
 
-    public List<String> getDummyList() {
-        List<String> dummyList = new ArrayList<>();
+    public JSONArray getDummyList() throws JSONException {
+        JSONArray dummyData = new JSONArray();
         for(int i = 0; i < 100; i++) {
-            dummyList.add("Court Number " + i);
+            JSONObject data  = new JSONObject();
+            data.put("name", "Court Number" + i);
+            List<String> courts = new ArrayList<>();
+            for(int j = 0; j < 3; j++) {
+                courts.add("Field " + j);
+            }
+            data.put("courts", courts);
+
+            dummyData.put(data);
         }
 
-        return dummyList;
+        return dummyData;
     }
 }

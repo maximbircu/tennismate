@@ -12,8 +12,8 @@
         android:theme="@style/AppTheme.NoActionBar">
 
         <activity
-            android:name=".ui.activities.SplashActivity"
-            android:theme="@style/SplashTheme">
+            android:name=".ui.activities.CourtListActivity">
+            <!--android:theme="@style/SplashTheme">-->
 
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -26,7 +26,6 @@
         <activity android:name=".ui.activities.SignUpActivity"/>
         <activity android:name=".ui.activities.PartnerFinderActivity"/>
         <activity android:name=".ui.activities.RandomPartnerFinderActivity"/>
-        <activity android:name=".ui.activities.CourtListActivity"/>
         <activity android:name=".ui.activities.CourtInfoActivity"/>
     </application>
 
