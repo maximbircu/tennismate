@@ -3,10 +3,7 @@ package com.example.hackintosh.tennismate.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
-import android.graphics.Color;
 import android.graphics.Paint;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 
 import com.squareup.picasso.Transformation;
 
@@ -15,19 +12,8 @@ import com.squareup.picasso.Transformation;
  */
 
 public class CircleTransform implements Transformation {
-
     @Override
     public Bitmap transform(Bitmap source) {
-        int bitmapWidth  = source.getWidth();
-        int bitmapHeight = source.getHeight();
-        int borderWidthHalf = 10; // In pixels
-
-        // Calculate the bitmap radius
-
-        int bitmapSquareWidth = Math.min(bitmapWidth,bitmapHeight);
-
-        int newBitmapSquareWidth = bitmapSquareWidth + borderWidthHalf;
-
         int size = Math.min(source.getWidth(), source.getHeight());
 
         int x = (source.getWidth() - size) / 2;
@@ -50,16 +36,6 @@ public class CircleTransform implements Transformation {
         canvas.drawCircle(r, r, r, paint);
 
         squaredBitmap.recycle();
-
-
-        // Initializing a new Paint instance to draw circular border
-        Paint borderPaint = new Paint();
-        borderPaint.setStyle(Paint.Style.STROKE);
-        borderPaint.setStrokeWidth(borderWidthHalf*2);
-        borderPaint.setColor(Color.WHITE);
-        borderPaint.setAntiAlias(true);
-        canvas.drawCircle(canvas.getWidth()/2, canvas.getWidth()/2, newBitmapSquareWidth/2 - 15, borderPaint);
-
         return bitmap;
     }
 
