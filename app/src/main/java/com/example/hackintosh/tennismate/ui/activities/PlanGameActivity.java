@@ -21,6 +21,7 @@ public class PlanGameActivity extends BaseAuthenticatedActivity<RandomPartnerFin
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setPresenter();
+        this.toolbarTitle = "Plan a game";
     }
 
     @Override

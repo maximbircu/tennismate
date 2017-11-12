@@ -40,6 +40,8 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
     private static final int RC_SIGN_IN = 9001;
     private FirebaseAuth mAuth;
     private GoogleSignInClient mGoogleSignInClient;
+    private FirebaseAuth.AuthStateListener mAuthListener;
+
 
     @BindView(R.id.sign_in)
     SignInButton signInButton;
@@ -55,6 +57,18 @@ public class LoginActivity extends BaseActivity<LoginView, LoginPresenter> imple
         ButterKnife.bind(this);
         setPresenter();
         initFirebase();
+
+        mAuthListener = firebaseAuth -> {
+            FirebaseUser user = firebaseAuth.getCurrentUser();
+            if (user != null) {
+                Log.d(TAG, "onAuthStateChanged:signed_in:" + user.getUid());
+            } else {
+                Log.d(TAG, "onAuthStateChanged:signed_out");
+            }
+            updateUI(user);
+        };
+
+        mAuth.addAuthStateListener(mAuthListener);
 
     }
 
