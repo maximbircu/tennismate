@@ -4,5 +4,6 @@
     <color name="colorPrimaryDark">#3B5323</color>
     <color name="colorAccent">#9CBA7F</color>
 
-    <color name="modeBackgroundColor">#33ffffff</color>
+    <color name="loginLogoBackgroundColor">#33ffffff</color>
+    <color name="modeBackgroundColor">#66ffffff</color>
 </resources>

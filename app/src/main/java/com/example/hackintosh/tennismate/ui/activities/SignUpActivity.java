@@ -94,7 +94,7 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
         UserService userService = new UserService();
         userService.getUserDetails(user -> {
             if(user != null) {
-                this.presenter.navigator.openCourtInfoActivity();
+                this.presenter.navigator.openPlanGame();
             }
         }, s -> {});
     }
