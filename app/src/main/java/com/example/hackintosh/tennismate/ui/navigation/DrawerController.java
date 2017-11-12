@@ -43,7 +43,7 @@ public class DrawerController<A extends BaseActivity> {
     DrawerLayout drawer;
 
     @BindView(R.id.toolbar)
-    Toolbar toolbar;
+    public Toolbar toolbar;
 
     private ImageView userIcon;
 

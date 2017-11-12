@@ -12,24 +12,15 @@ import com.example.hackintosh.tennismate.ui.view.CourtInfoView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 
 public class CourtInfoActivity extends BaseAuthenticatedActivity<CourtInfoView, CourtInfoPresenter> implements CourtInfoView {
-
-    private String court;
-    private String field;
-
-    @BindView(R.id.court)
-    TextView courtText;
-
-    @BindView(R.id.field)
-    TextView fieldText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setPresenter();
-        this.toolbarTitle = "Court info";
     }
 
     @Override
@@ -47,10 +38,12 @@ public class CourtInfoActivity extends BaseAuthenticatedActivity<CourtInfoView, 
 
     public void setupActivity() {
         Intent intent = getIntent();
-        court = intent.getStringExtra("court");
-        field = intent.getStringExtra("field");
+        this.drawerController.toolbar.setTitle(intent.getStringExtra("field") + intent.getStringExtra("court"));
 
-        courtText.setText(court);
-        fieldText.setText(field);
+    }
+
+    @OnClick(R.id.bookCourt)
+    public void onBook(){
+        presenter.navigator.openPartnerFinderActivity();
     }
 }

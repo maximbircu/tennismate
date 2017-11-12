@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.graphics.Color;
 import android.support.v7.widget.RecyclerView;
+import android.text.Layout;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -86,14 +87,19 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             TextView mTextView = new TextView(context);
             String fieldName = "Field No. " + courts.get(i);
             mTextView.setText(fieldName);
-            mTextView.setTextColor(Color.GRAY);
+            mTextView.setTextColor(Color.DKGRAY);
+            mTextView.setBackgroundColor(Color.LTGRAY);
             mTextView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, CourtInfoActivity.class);
                 intent.putExtra("court", holder.mTextView.getText());
                 intent.putExtra("field", mTextView.getText());
                 context.startActivity(intent);
             });
-            dataLayout.addView(mTextView);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);
+
+            params.rightMargin = 40;
+
+            dataLayout.addView(mTextView, params);
         }
 
     }

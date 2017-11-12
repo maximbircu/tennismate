@@ -18,7 +18,8 @@ public abstract class BaseAuthenticatedActivity<V extends BaseView, P extends Ba
 
     private static String TAG = BaseAuthenticatedActivity.class.getName();
 
-    protected String toolbarTitle; 
+    protected String toolbarTitle;
+    protected DrawerController<BaseAuthenticatedActivity> drawerController;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -33,7 +34,7 @@ public abstract class BaseAuthenticatedActivity<V extends BaseView, P extends Ba
     }
 
     protected void initNavigationController() {
-        DrawerController<BaseAuthenticatedActivity> drawerController = new DrawerController<>(this,
+        drawerController = new DrawerController<>(this,
                 R.layout.navigation,
                 R.id.navigation_drawer_container,
                 toolbarTitle);
