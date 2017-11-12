@@ -17,6 +17,7 @@ import com.example.hackintosh.tennismate.R;
 import com.example.hackintosh.tennismate.dto.DataKeys;
 import com.example.hackintosh.tennismate.dto.LevelEnum;
 import com.example.hackintosh.tennismate.dto.User;
+import com.example.hackintosh.tennismate.service.UserService;
 import com.example.hackintosh.tennismate.ui.navigation.Navigator;
 import com.example.hackintosh.tennismate.ui.presenters.SignUpPresenter;
 import com.example.hackintosh.tennismate.ui.view.SingnUpView;
@@ -63,6 +64,7 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        checkForExistingUser();
         setContentView(R.layout.activity_sign_up);
         setPresenter();
         ButterKnife.bind(this);
@@ -95,6 +97,15 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
 
     private String getUserPictureUrl(FirebaseUser firebaseUser) {
        return firebaseUser.getPhotoUrl().toString().replaceAll("s\\d+\\-", "s600-");
+    }
+
+    private void checkForExistingUser() {
+        UserService userService = new UserService();
+        userService.getUserDetails(user -> {
+            if(user != null) {
+                this.presenter.navigator.openCourtInfoActivity();
+            }
+        }, s -> {});
     }
 
     private User populateUser() {
