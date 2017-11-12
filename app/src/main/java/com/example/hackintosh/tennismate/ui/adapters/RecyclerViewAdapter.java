@@ -12,9 +12,12 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.example.hackintosh.tennismate.InstanceData;
 import com.example.hackintosh.tennismate.R;
 import com.example.hackintosh.tennismate.dto.Court;
+import com.example.hackintosh.tennismate.service.MatchService;
 import com.example.hackintosh.tennismate.ui.activities.CourtInfoActivity;
 import com.squareup.picasso.Picasso;
 
@@ -84,8 +87,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         dataLayout.removeAllViews();
 
         for(int i = 0; i < courts.size(); i++) {
+            final int terrainNumber = i;
             TextView mTextView = new TextView(context);
-            String fieldName = "Field No. " + courts.get(i);
+            String fieldName = "Field No. " + courts.get(terrainNumber);
             mTextView.setText(fieldName);
             mTextView.setTextColor(Color.DKGRAY);
             mTextView.setBackgroundColor(Color.LTGRAY);
@@ -93,6 +97,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 Intent intent = new Intent(context, CourtInfoActivity.class);
                 intent.putExtra("court", holder.mTextView.getText());
                 intent.putExtra("field", mTextView.getText());
+                InstanceData.courtId = court.getId();
+                InstanceData.terrainNumber = terrainNumber;
+
                 context.startActivity(intent);
             });
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT,LinearLayout.LayoutParams.WRAP_CONTENT);

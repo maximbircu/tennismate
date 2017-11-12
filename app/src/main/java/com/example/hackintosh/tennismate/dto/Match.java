@@ -1,5 +1,6 @@
 package com.example.hackintosh.tennismate.dto;
 
+import java.util.Date;
 import java.util.List;
 
 /**
@@ -12,16 +13,18 @@ public class Match {
     private List<String> joins;
     private int locationId;
     private int terrainNumber;
+    private Date plannedTime;
 
     public Match() {
     }
 
-    public Match(String ownerId, int joinLimit, List<String> joins, int locationId, int terrainNumber) {
+    public Match(String ownerId, int joinLimit, List<String> joins, int locationId, int terrainNumber, Date plannedTime) {
         this.ownerId = ownerId;
         this.joinLimit = joinLimit;
         this.joins = joins;
         this.locationId = locationId;
         this.terrainNumber = terrainNumber;
+        this.plannedTime = plannedTime;
     }
 
     public String getOwnerId() {
@@ -46,5 +49,9 @@ public class Match {
 
     public boolean hasOpenPlaces(){
         return joinLimit > joins.size();
+    }
+
+    public Date getPlannedTime() {
+        return plannedTime;
     }
 }
