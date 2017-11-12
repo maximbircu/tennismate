@@ -86,7 +86,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
             TextView mTextView = new TextView(context);
             String fieldName = "Field No. " + courts.get(i);
             mTextView.setText(fieldName);
-            mTextView.setTextColor(Color.WHITE);
+            mTextView.setTextColor(Color.GRAY);
             mTextView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, CourtInfoActivity.class);
                 intent.putExtra("court", holder.mTextView.getText());
