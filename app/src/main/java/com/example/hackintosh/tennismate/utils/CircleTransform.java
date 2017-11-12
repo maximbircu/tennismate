@@ -3,7 +3,10 @@ package com.example.hackintosh.tennismate.utils;
 import android.graphics.Bitmap;
 import android.graphics.BitmapShader;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
+import android.support.v4.graphics.drawable.RoundedBitmapDrawableFactory;
 
 import com.squareup.picasso.Transformation;
 
@@ -12,8 +15,6 @@ import com.squareup.picasso.Transformation;
  */
 
 public class CircleTransform implements Transformation {
-<<<<<<< HEAD
-=======
 
     private boolean hasBorder;
 
@@ -21,9 +22,18 @@ public class CircleTransform implements Transformation {
         this.hasBorder = hasBorder;
     }
 
->>>>>>> 9bdc677132c3a17a004c7b7bf96ebe22de6382fb
     @Override
     public Bitmap transform(Bitmap source) {
+        int bitmapWidth  = source.getWidth();
+        int bitmapHeight = source.getHeight();
+        int borderWidthHalf = 10; // In pixels
+
+        // Calculate the bitmap radius
+
+        int bitmapSquareWidth = Math.min(bitmapWidth,bitmapHeight);
+
+        int newBitmapSquareWidth = bitmapSquareWidth + borderWidthHalf;
+
         int size = Math.min(source.getWidth(), source.getHeight());
 
         int x = (source.getWidth() - size) / 2;
@@ -45,9 +55,6 @@ public class CircleTransform implements Transformation {
         float r = size/2f;
         canvas.drawCircle(r, r, r, paint);
 
-<<<<<<< HEAD
-        squaredBitmap.recycle();
-=======
         if(hasBorder) {
             // Initializing a new Paint instance to draw circular border
             Paint borderPaint = new Paint();
@@ -58,7 +65,6 @@ public class CircleTransform implements Transformation {
             canvas.drawCircle(canvas.getWidth()/2, canvas.getWidth()/2, newBitmapSquareWidth/2 - 15, borderPaint);
         }
 
->>>>>>> 9bdc677132c3a17a004c7b7bf96ebe22de6382fb
         return bitmap;
     }
 
