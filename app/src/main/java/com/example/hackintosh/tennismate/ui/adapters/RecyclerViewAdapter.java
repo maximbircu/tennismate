@@ -12,6 +12,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.hackintosh.tennismate.R;
+import com.example.hackintosh.tennismate.dto.Court;
 import com.example.hackintosh.tennismate.ui.activities.CourtInfoActivity;
 
 import org.json.JSONArray;
@@ -29,7 +30,7 @@ import butterknife.ButterKnife;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.ViewHolder> {
 
-    private JSONArray mDataset;
+    private List<Court> mDataset;
     private Context context;
 
 
@@ -46,7 +47,7 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         }
     }
 
-    public RecyclerViewAdapter(JSONArray myDataset) {
+    public RecyclerViewAdapter(List<Court> myDataset) {
         mDataset = myDataset;
     }
 
@@ -64,21 +65,21 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
 
-        List<String> courts = null; // = new ArrayList<>();
+        List<Integer> courts = null; // = new ArrayList<>();
 
-        try {
-            holder.mTextView.setText(mDataset.getJSONObject(position).getString("name"));
-            courts = (List<String>) mDataset.getJSONObject(position).get("courts");
-        } catch (JSONException e) {
-            e.printStackTrace();
-        }
+        Court court = mDataset.get(position);
+
+        holder.mTextView.setText(court.getTitle());
+        courts = court.getTerrains();
+
 
         LinearLayout dataLayout = (LinearLayout) holder.view.findViewById(R.id.dataContainer);
         dataLayout.removeAllViews();
 
         for(int i = 0; i < courts.size(); i++) {
             TextView mTextView = new TextView(context);
-            mTextView.setText(courts.get(i));
+            String fieldName = "Field No. " + courts.get(i);
+            mTextView.setText(fieldName);
             mTextView.setTextColor(Color.WHITE);
             mTextView.setOnClickListener(v -> {
                 Intent intent = new Intent(context, CourtInfoActivity.class);
@@ -93,6 +94,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
 
     @Override
     public int getItemCount() {
-        return mDataset.length();
+        return mDataset.size();
     }
 }

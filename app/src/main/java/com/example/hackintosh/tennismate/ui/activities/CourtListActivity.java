@@ -4,8 +4,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import com.example.hackintosh.tennismate.R;
+import com.example.hackintosh.tennismate.dto.Court;
+import com.example.hackintosh.tennismate.portability.Consumer;
+import com.example.hackintosh.tennismate.service.CourtsServices;
 import com.example.hackintosh.tennismate.ui.adapters.RecyclerViewAdapter;
 import com.example.hackintosh.tennismate.ui.navigation.Navigator;
 import com.example.hackintosh.tennismate.ui.presenters.CourtListPresenter;
@@ -59,8 +63,9 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
         mLayoutManager = new LinearLayoutManager(this);
         mRecyclerView.setLayoutManager(mLayoutManager);
 
-        mAdapter = new RecyclerViewAdapter(getDummyList());
         mRecyclerView.setAdapter(mAdapter);
+
+        populateCourtList();
     }
 
     public void setPresenter() {
@@ -68,20 +73,11 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
         presenter.bind(this);
     }
 
-    public JSONArray getDummyList() throws JSONException {
-        JSONArray dummyData = new JSONArray();
-        for(int i = 0; i < 100; i++) {
-            JSONObject data  = new JSONObject();
-            data.put("name", "Court Number" + i);
-            List<String> courts = new ArrayList<>();
-            for(int j = 0; j < 3; j++) {
-                courts.add("Field " + j);
-            }
-            data.put("courts", courts);
+    public void populateCourtList() {
+        CourtsServices courtsServices = new CourtsServices();
+        courtsServices.getCourts((data) -> {
+            mAdapter = new RecyclerViewAdapter(data);
 
-            dummyData.put(data);
-        }
-
-        return dummyData;
+        }, (error) -> Log.d("dsd", error));
     }
 }

@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme.NoActionBar">
 
         <activity
-            android:name=".ui.activities.CourtListActivity">
+            android:name=".ui.activities.SplashActivity">
             <!--android:theme="@style/SplashTheme">-->
 
             <intent-filter>
