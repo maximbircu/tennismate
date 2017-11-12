@@ -1,6 +1,5 @@
 package com.example.hackintosh.tennismate.ui.presenters;
 
-import android.util.Log;
 import android.view.MenuItem;
 
 import com.example.hackintosh.tennismate.ui.navigation.Navigator;
@@ -44,7 +43,7 @@ public class BasePresenter<V> {
     }
 
     public void randomPartnerFinder(MenuItem menuItem) {
-        navigator.openRandomPartnerFinderActivity();
+        navigator.openPlanGame();
     }
 
     public void logout(MenuItem menuItem) {

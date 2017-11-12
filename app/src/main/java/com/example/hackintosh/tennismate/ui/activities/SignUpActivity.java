@@ -1,12 +1,7 @@
 package com.example.hackintosh.tennismate.ui.activities;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.hackintosh.tennismate.R;
-import com.example.hackintosh.tennismate.dto.DataKeys;
 import com.example.hackintosh.tennismate.dto.LevelEnum;
 import com.example.hackintosh.tennismate.dto.User;
 import com.example.hackintosh.tennismate.service.UserService;
@@ -22,17 +16,14 @@ import com.example.hackintosh.tennismate.ui.navigation.Navigator;
 import com.example.hackintosh.tennismate.ui.presenters.SignUpPresenter;
 import com.example.hackintosh.tennismate.ui.view.SingnUpView;
 import com.example.hackintosh.tennismate.utils.CircleTransform;
-import com.example.hackintosh.tennismate.utils.DrawableHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -47,8 +38,8 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
     @BindView(R.id.level_spinner)
     public Spinner levelSpinner;
 
-    @BindView(R.id.age_editText)
-    public EditText ageEditText;
+    @BindView(R.id.age_spinner)
+    public Spinner ageSpinner;
 
     @BindView(R.id.full_name_editText)
     public EditText fullNameEditText;
@@ -86,6 +77,13 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
         dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         levelSpinner.setAdapter(dataAdapter);
 
+        List<Integer> ageList = new ArrayList<>();
+        for(int i = 7; i < 60; i++) {
+            ageList.add(i);
+        }
+        ArrayAdapter<Integer> ageAdapter = new ArrayAdapter<Integer>(this, android.R.layout.simple_spinner_item, ageList);
+
+        ageSpinner.setAdapter(ageAdapter);
         loadCircleImage(currentUser);
     }
 
@@ -103,7 +101,7 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
         UserService userService = new UserService();
         userService.getUserDetails(user -> {
             if(user != null) {
-                this.presenter.navigator.openCourtInfoActivity();
+                this.presenter.navigator.openPlanGame();
             }
         }, s -> {});
     }
@@ -112,7 +110,7 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
         User user = new User();
         user.setFullName(FirebaseAuth.getInstance().getCurrentUser().getDisplayName());
         user.setEmail(FirebaseAuth.getInstance().getCurrentUser().getEmail());
-        user.setAge(Short.parseShort(ageEditText.getText().toString()));
+        user.setAge((Integer) ageSpinner.getSelectedItem());
         user.setImageUrl(getUserPictureUrl(FirebaseAuth.getInstance().getCurrentUser()));
         user.setLevel(LevelEnum.ADVANCED);
         return user;
@@ -125,6 +123,6 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
 
     @Override
     public void onPostSuccess() {
-        super.presenter.navigator.openCourtInfoActivity();
+        super.presenter.navigator.openPlanGame();
     }
 }
