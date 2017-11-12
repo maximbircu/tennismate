@@ -52,7 +52,7 @@ public class Navigator {
         activity.finish();
     }
 
-    public void openRandomPartnerFinderActivity() {
+    public void openPlanGame() {
         Intent intent = new Intent(activity, PlanGameActivity.class);
         activity.startActivity(intent);
         activity.finish();

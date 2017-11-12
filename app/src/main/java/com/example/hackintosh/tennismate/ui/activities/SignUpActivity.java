@@ -1,12 +1,7 @@
 package com.example.hackintosh.tennismate.ui.activities;
 
-import android.content.Intent;
-import android.graphics.Bitmap;
-import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.v4.graphics.drawable.RoundedBitmapDrawable;
-import android.util.Log;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -14,7 +9,6 @@ import android.widget.ImageView;
 import android.widget.Spinner;
 
 import com.example.hackintosh.tennismate.R;
-import com.example.hackintosh.tennismate.dto.DataKeys;
 import com.example.hackintosh.tennismate.dto.LevelEnum;
 import com.example.hackintosh.tennismate.dto.User;
 import com.example.hackintosh.tennismate.service.UserService;
@@ -22,17 +16,14 @@ import com.example.hackintosh.tennismate.ui.navigation.Navigator;
 import com.example.hackintosh.tennismate.ui.presenters.SignUpPresenter;
 import com.example.hackintosh.tennismate.ui.view.SingnUpView;
 import com.example.hackintosh.tennismate.utils.CircleTransform;
-import com.example.hackintosh.tennismate.utils.DrawableHelper;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-import java.util.logging.Level;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -125,6 +116,6 @@ public class SignUpActivity extends BaseActivity<SingnUpView, SignUpPresenter> i
 
     @Override
     public void onPostSuccess() {
-        super.presenter.navigator.openCourtInfoActivity();
+        super.presenter.navigator.openPlanGame();
     }
 }
