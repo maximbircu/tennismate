@@ -7,17 +7,26 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.LayoutInflater;
 import android.view.MenuItem;
+import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.example.hackintosh.tennismate.R;
 import com.example.hackintosh.tennismate.portability.Consumer;
+import com.example.hackintosh.tennismate.service.UserService;
 import com.example.hackintosh.tennismate.ui.activities.BaseActivity;
+import com.example.hackintosh.tennismate.utils.CircleTransform;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.squareup.picasso.Picasso;
 
 import java.util.Dictionary;
 import java.util.Hashtable;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.Optional;
 
 /**
  * Created by maxim on 11/11/17.
@@ -34,6 +43,12 @@ public class DrawerController<A extends BaseActivity> {
     @BindView(R.id.toolbar)
     Toolbar toolbar;
 
+    private ImageView userIcon;
+
+    private TextView fullName;
+
+    private TextView email;
+
     @BindView(R.id.nav_view)
     NavigationView navigationView;
 
@@ -43,6 +58,7 @@ public class DrawerController<A extends BaseActivity> {
         menuItemSelectedConsumers = new Hashtable<>();
         navigationDrawerContainer = (ViewGroup) activity.findViewById(navigationDrawerContainerId);
         inflateContents(activity, navigationLayoutId);
+
     }
 
     private void inflateContents(A activity, int navigationLayoutId) {
@@ -58,6 +74,25 @@ public class DrawerController<A extends BaseActivity> {
         drawer.addDrawerListener(toggle);
         toggle.syncState();
         navigationView.setNavigationItemSelectedListener(this::onNavigationItemSelected);
+
+
+        FirebaseUser currentUser = FirebaseAuth.getInstance().getCurrentUser();
+
+
+        View headerView = navigationView.getHeaderView(0);
+
+        userIcon = (ImageView)headerView.findViewById(R.id.imageView);
+        fullName = (TextView) headerView.findViewById(R.id.fullName);
+        email = (TextView) headerView.findViewById(R.id.email);
+
+
+        Picasso.with(activity)
+                .load(currentUser.getPhotoUrl())
+                .transform(new CircleTransform())
+                .into(userIcon);
+
+        fullName.setText(currentUser.getDisplayName());
+        email.setText(currentUser.getEmail());
     }
 
     public void setMenuItems(int menuId) {
