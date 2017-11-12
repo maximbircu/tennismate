@@ -8,11 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-<<<<<<< HEAD
 import android.util.Log;
-=======
-import android.view.View;
->>>>>>> bd88f699b94803ddae3de1b1a225a1b403ead1ee
 
 import com.example.hackintosh.tennismate.R;
 import com.example.hackintosh.tennismate.dto.Court;
@@ -62,7 +58,6 @@ public class CourtListActivity extends BaseAuthenticatedActivity<CourtListView, 
         } catch (JSONException e) {
             e.printStackTrace();
         }
-        setupRecycler();
         createNotification();
     }
 
