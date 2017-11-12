@@ -1,6 +1,7 @@
 
 package com.example.hackintosh.tennismate.service;
 
+import com.example.hackintosh.tennismate.InstanceData;
 import com.example.hackintosh.tennismate.dto.Match;
 import com.example.hackintosh.tennismate.portability.Consumer;
 import com.google.firebase.auth.FirebaseAuth;
@@ -15,9 +16,9 @@ import java.util.UUID;
 public class MatchService {
     private static final String baseNode = "/match";
 
-    public void createMatch(int playerLimit, int locationId, int terrainNumber, Runnable onComplete, Consumer<String> onError) {
+    public void createMatch(Runnable onComplete, Consumer<String> onError) {
         String uid = FirebaseAuth.getInstance().getCurrentUser().getUid();
-        Match match = new Match(uid, playerLimit, new LinkedList<>(), locationId, terrainNumber);
+        Match match = new Match(uid, InstanceData.players, new LinkedList<>(), InstanceData.courtId, InstanceData.terrainNumber, InstanceData.plannedDate);
         String id = UUID.randomUUID().toString();
         FirebaseHelper.setValue(getNode(id),match,onComplete,onError);
 

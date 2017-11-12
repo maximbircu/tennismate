@@ -3,12 +3,20 @@ package com.example.hackintosh.tennismate.ui.activities;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.widget.DatePicker;
 import android.widget.TextView;
+import android.widget.TimePicker;
+import android.widget.Toast;
 
+import com.example.hackintosh.tennismate.InstanceData;
 import com.example.hackintosh.tennismate.R;
+import com.example.hackintosh.tennismate.service.MatchService;
 import com.example.hackintosh.tennismate.ui.navigation.Navigator;
 import com.example.hackintosh.tennismate.ui.presenters.CourtInfoPresenter;
 import com.example.hackintosh.tennismate.ui.view.CourtInfoView;
+
+import java.util.Calendar;
+import java.util.Date;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -16,6 +24,12 @@ import butterknife.OnClick;
 
 
 public class CourtInfoActivity extends BaseAuthenticatedActivity<CourtInfoView, CourtInfoPresenter> implements CourtInfoView {
+
+    @BindView(R.id.datePicker)
+    DatePicker datePicker;
+
+    @BindView(R.id.timePicker)
+    TimePicker timePicker;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +58,12 @@ public class CourtInfoActivity extends BaseAuthenticatedActivity<CourtInfoView, 
 
     @OnClick(R.id.bookCourt)
     public void onBook(){
-        presenter.navigator.openPartnerFinderActivity();
+        Calendar instance = Calendar.getInstance();
+        instance.set(datePicker.getYear(),datePicker.getMonth(),datePicker.getDayOfMonth(), timePicker.getCurrentHour(), timePicker.getCurrentMinute());
+        InstanceData.plannedDate = instance.getTime();
+
+        MatchService matchService = new MatchService();
+
+        matchService.createMatch(() -> presenter.navigator.openPartnerFinderActivity(), (msg) -> Toast.makeText(this, msg, Toast.LENGTH_LONG).show());
     }
 }
